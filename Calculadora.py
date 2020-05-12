@@ -8,6 +8,7 @@ frame_calc.pack()
 # ------------ SCREEN ------------------------------------
 
 screenNumber = StringVar()
+screenNumber.set("0")
 screen = Entry(frame_calc, textvariable = screenNumber)
 screen.grid(row=0,column=0, padx=10, pady=10, columnspan = 4)
 screen.config(bg = "black", fg = "green", justify = "right")
@@ -16,9 +17,14 @@ screen.config(bg = "black", fg = "green", justify = "right")
 
 def key_pressed(num):
 
-    if ((num == "0") & (screenNumber.get() == "0")):
-        print(screenNumber.get())
-    screenNumber.set(screenNumber.get() + num)      # Gets whatever is in screen and adds the next value
+    if num == "0":    # If screen number is just 0 do not add another 0
+        if screenNumber.get() != "0":
+            screenNumber.set(screenNumber.get() + num)
+    else:
+        if screenNumber.get() == "0":
+            screenNumber.set(num)
+        else:
+            screenNumber.set(screenNumber.get() + num)      # Gets whatever is in screen and adds the next value
 
 
 # ------------ KEYBOARD ------------------------------------
