@@ -17,9 +17,12 @@ screen.config(bg = "black", fg = "green", justify = "right")
 
 def key_pressed(num):
     scr = screenNumber.get()
-    if ((num == ".") & ("." in scr)):
-        return
-    if num == "0":    # If screen number is just 0 do not add another 0
+    if num == ".":
+        if "." in scr:
+            return
+        else:
+            screenNumber.set(scr + num)
+    elif num == "0":    # If screen number is just 0 do not add another 0
         if scr != "0":
             screenNumber.set(scr + num)      # Gets whatever is in screen and adds the next value
     else:
@@ -27,8 +30,13 @@ def key_pressed(num):
             screenNumber.set(num)
         else:
             screenNumber.set(scr + num)
-    if ((num == ".") & (num not in scr)):
-        screenNumber.set(scr + num)
+
+def operation(ope):
+    num_1 = float(screenNumber.get())
+
+def clear():
+    screenNumber.set("0")
+
 
 # ------------ KEYBOARD ------------------------------------
 # ------------ row 1 ------------------------------------
@@ -39,8 +47,10 @@ button_8 = Button(frame_calc, text = "8", width = 3, command=lambda:key_pressed(
 button_8.grid(row=1, column=1)
 button_9 = Button(frame_calc, text = "9", width = 3, command=lambda:key_pressed("9"))
 button_9.grid(row=1, column=2)
-button_div  = Button(frame_calc, text = "/", width = 3)
+button_div  = Button(frame_calc, text = "/", width = 3, command=lambda:operation("/"))
 button_div.grid(row=1, column=3)
+button_clc  = Button(frame_calc, text = "Clear", width = 3, command=lambda:clear())
+button_clc.grid(row=1, column=4)
 
 # ------------ row 2 ------------------------------------
 
@@ -72,7 +82,7 @@ button_0  = Button(frame_calc, text = "0", width = 3, command=lambda:key_pressed
 button_0.grid(row=4, column=1)
 button_eq  = Button(frame_calc, text = "=", width = 3)
 button_eq.grid(row=4, column=2)
-button_minu  = Button(frame_calc, text = "/", width = 3)
+button_minu  = Button(frame_calc, text = "-", width = 3)
 button_minu.grid(row=4, column=3)
 
 
