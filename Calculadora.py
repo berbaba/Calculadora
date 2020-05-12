@@ -16,16 +16,19 @@ screen.config(bg = "black", fg = "green", justify = "right")
 # ------------ Functionalities ------------------------------------
 
 def key_pressed(num):
-
+    scr = screenNumber.get()
+    if ((num == ".") & ("." in scr)):
+        return
     if num == "0":    # If screen number is just 0 do not add another 0
-        if screenNumber.get() != "0":
-            screenNumber.set(screenNumber.get() + num)
+        if scr != "0":
+            screenNumber.set(scr + num)      # Gets whatever is in screen and adds the next value
     else:
-        if screenNumber.get() == "0":
+        if scr == "0":
             screenNumber.set(num)
         else:
-            screenNumber.set(screenNumber.get() + num)      # Gets whatever is in screen and adds the next value
-
+            screenNumber.set(scr + num)
+    if ((num == ".") & (num not in scr)):
+        screenNumber.set(scr + num)
 
 # ------------ KEYBOARD ------------------------------------
 # ------------ row 1 ------------------------------------
