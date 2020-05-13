@@ -16,8 +16,9 @@ reset_screen = False
 
 screenNumber = StringVar()
 screenNumber.set("0")
-screen = Entry(frame_calc, font=('Verdana',30),textvariable = screenNumber)
-screen.grid(row=0,column=0, ipady =30,padx=10, pady=10, columnspan = 4)
+screen = Entry(frame_calc, font=('Verdana',20),textvariable = screenNumber)
+# screen.focus_set()            # Makes sure Keyboard is focused on this widget
+screen.grid(row=0,column=0, ipady =20, ipadx = 100, padx=5, pady=5, columnspan = 5)
 screen.config(bg = "black", width=20, fg = "green", justify = "right")
 
 # ------------ Functionalities ------------------------------------
@@ -47,7 +48,6 @@ def key_pressed(num):
                 screenNumber.set(num)
             else:
                 screenNumber.set(scr + num)
-    print(screenNumber.get())
 
 def clear():                                # Clears screen to 0 and saved values to 0
     global chain
@@ -63,13 +63,13 @@ def operation(ope):
     except ValueError:
         scr = 0
     if chain[-1] == True:
-        chain[-5] = scr
-        chain[-4] = ope
+        chain[-5] = scr                 # First number to operate stored.
+        chain[-4] = ope                 # First operation action stored.
     else:
-        chain[-3] = scr
-        chain[-2] = ope
-    last_operation = chain[-4]
-    result(last_operation)
+        chain[-3] = scr                 # Second number to operate stored.
+        chain[-2] = ope                 # Second operation action stored.
+    previous_operation = chain[-4]      # When an operation button is pressed, the result
+    result(previous_operation)          # of the previous operation is shown
 
 def result(op):
     global chain
@@ -78,15 +78,22 @@ def result(op):
     if op == "-":
         res = chain[-5] - chain[-3]
     if op == "x":
-        if chain[-1] == False:
-            res = chain[-5] * chain[-3]
+        if chain[-1] == False:             # Avoids case starting with a 0 to multiply
+            res = chain[-5] * chain[-3]    # Not needed for the plus or minus
         else:
             res = float(screenNumber.get())
     if op == "/":
-        res = chain[-5] / chain[-3]
+        if chain[-1] == False:
+            try:
+                res = chain[-5] / chain[-3]
+            except ZeroDivisionError:
+                screenNumber.set("Zero division error, press Clc")
+                res = 0
+                return
+        else:
+            res = float(screenNumber.get())
     if op == "=":
         res = chain[-5]
-
     screenNumber.set(res)
     chain[-5] = res
     if chain[-1] == False:
@@ -95,7 +102,7 @@ def result(op):
 
 # ------------ Functionalities ------------------------------------
 # ------------ Keyboard Operated ------------------------------------
-# var = input()
+
 
 
 # ------------ KEYPAD ------------------------------------
