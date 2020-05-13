@@ -89,11 +89,11 @@ def result(op):
             res = (chain[-5], chain[-3])
             print(res)
         else:
-            res = float(screenNumber.get())
+            res = screenNumber.get()
     if op == "/":
         res = chain[-5] / chain[-3]
     if op == "=":
-        res = chain[-5]
+        res = chain[-5]# - chain[-3]
 
     screenNumber.set(res)
     chain[-5] = res

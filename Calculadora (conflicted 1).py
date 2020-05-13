@@ -77,6 +77,7 @@ def operation(ope):
     result(last_operation)
     print(chain)
 
+
 def result(op):
     global chain
     if op == "+":
@@ -85,15 +86,13 @@ def result(op):
         res = chain[-5] - chain[-3]
     if op == "x":
         if chain[-1] == False:
-            # res = chain[-5] * chain[-3]
-            res = (chain[-5], chain[-3])
-            print(res)
+            res = chain[-5] * chain[-3]
         else:
-            res = float(screenNumber.get())
+            res = screenNumber.get()        
     if op == "/":
         res = chain[-5] / chain[-3]
     if op == "=":
-        res = chain[-5]
+        res = chain[-5]# - chain[-3]
 
     screenNumber.set(res)
     chain[-5] = res
