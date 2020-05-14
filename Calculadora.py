@@ -11,6 +11,7 @@ frame_calc.pack()
 
 chain = [0,0,0,0,True]
 reset_screen = False
+k = {"act_operation": "", "k": False}
 
 # ------------ SCREEN ------------------------------------
 
@@ -30,7 +31,9 @@ screen.config(bg = "black", width=20, fg = "green", justify = "right")
 def key_pressed(num):
     global reset_screen
     global chain
+    global k
     scr = screenNumber.get()
+    k["k"] = False
     if reset_screen == True:
         screenNumber.set(num)
         reset_screen = False
@@ -53,20 +56,24 @@ def clear():                                # Clears screen to 0 and saved value
     global chain
     chain[:] = [0,0,0,0,True]
     screenNumber.set("0")
+    k["act_operation","k"] = "", False
 
 def operation(ope):
     global reset_screen
     reset_screen = True
     global chain
+    global k
     try:                                 # For the case there's only a dot in screen
         scr = float(screenNumber.get())
     except ValueError:
         scr = 0
+    if k["act_operation"] == ope:
+        k["k"] = True
     if chain[-1] == True:
         chain[-5] = scr                 # First number to operate stored.
         chain[-4] = ope                 # First operation action stored.
     else:
-        chain[-3] = scr                 # Second number to operate stored.
+        chain[-3] = scr             # Second number to operate stored.
         chain[-2] = ope                 # Second operation action stored.
     previous_operation = chain[-4]      # When an operation button is pressed, the result
     result(previous_operation)          # of the previous operation is shown
@@ -99,6 +106,7 @@ def result(op):
     if chain[-1] == False:
         chain[-4] = chain[-2]
     chain[-1] = False
+    k["act_operation"] = op          # Saves the operation, so if repeated it behaves properly
 
 # ------------ Functionalities ------------------------------------
 # ------------ Keyboard Operated ------------------------------------
