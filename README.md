@@ -1,15 +1,11 @@
 # Calculadora
 Python GUI first testing project
 
-TEST****
-Here's our logo (hover to see the title text):
+Calculator GUI implementation practice:
 
-Inline-style: 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/berbaba/Calculadora/blob/master/Calc_Screenshot_update.png?raw=true " Calculator Screenshot")
 
-Reference-style: 
+<!-- Reference-style:
 ![alt text][logo]
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
-
-END OF TEST ****
+[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2" -->
