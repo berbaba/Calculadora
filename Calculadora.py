@@ -17,9 +17,9 @@ k = {"act_operation": "", "k": False}
 
 screenNumber = StringVar()
 screenNumber.set("0")
-screen = Entry(frame_calc, font=('Verdana',20),textvariable = screenNumber)
+screen = Entry(frame_calc, font=('Verdana',30),textvariable = screenNumber)
 # screen.focus_set()            # Makes sure Keyboard is focused on this widget
-screen.grid(row=0,column=0, ipady =20, ipadx = 100, padx=5, pady=5, columnspan = 5)
+screen.grid(row=0,column=0, ipady =30, ipadx = 100, padx=5, pady=5, columnspan = 5)
 screen.config(bg = "black", width=20, fg = "green", justify = "right")
 
 # ------------ Functionalities ------------------------------------
@@ -112,53 +112,59 @@ def result(op):
 # ------------ Keyboard Operated ------------------------------------
 
 
-
+var1,var2= IntVar(),IntVar()
 # ------------ KEYPAD ------------------------------------
 # ------------ row 1 ------------------------------------
-
-button_7 = Button(frame_calc, text = "7", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("7"))
-button_7.grid(row=1, column=0)
-button_8 = Button(frame_calc, text = "8", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("8"))
-button_8.grid(row=1, column=1)
-button_9 = Button(frame_calc, text = "9", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("9"))
-button_9.grid(row=1, column=2)
-button_div  = Button(frame_calc, text = "/", width = 9, height = 6, font=(None,15), command=lambda:operation("/"))
-button_div.grid(row=1, column=3)
-button_clc  = Button(frame_calc, text = "Clear", width = 9, height = 6, font=(None,15), command=lambda:clear())
-button_clc.grid(row=1, column=4)
+Radiobutton(frame_calc,text="Deg",width = 4, height = 4,
+                        font=(None,16),variable = var1, value=1).grid(row=1,column=0)
+Radiobutton(frame_calc,text="Rad", width = 4, height = 4,
+                        font=(None,16),variable = var2, value=2).grid(row=1,column=1)
 
 # ------------ row 2 ------------------------------------
 
-button_4 = Button(frame_calc, text = "4", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("4"))
-button_4.grid(row=2, column=0)
-button_5 = Button(frame_calc, text = "5", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("5"))
-button_5.grid(row=2, column=1)
-button_6  = Button(frame_calc, text = "6", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("6"))
-button_6.grid(row=2, column=2)
-button_mult = Button(frame_calc, text = "x", width = 9, height = 6, font=(None,15), command=lambda:operation("x"))
-button_mult.grid(row=2, column=3)
+button_7 = Button(frame_calc, text = "7", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("7"))
+button_7.grid(row=2, column=0)
+button_8 = Button(frame_calc, text = "8", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("8"))
+button_8.grid(row=2, column=1)
+button_9 = Button(frame_calc, text = "9", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("9"))
+button_9.grid(row=2, column=2)
+button_div  = Button(frame_calc, text = "/", width = 9, height = 6, font=(None,15), command=lambda:operation("/"))
+button_div.grid(row=2, column=3)
+button_clc  = Button(frame_calc, text = "Clear", width = 9, height = 6, font=(None,15), command=lambda:clear())
+button_clc.grid(row=2, column=4)
 
 # ------------ row 3 ------------------------------------
 
-button_1  = Button(frame_calc, text = "1", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("1"))
-button_1.grid(row=3, column=0)
-button_2  = Button(frame_calc, text = "2", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("2"))
-button_2.grid(row=3, column=1)
-button_3  = Button(frame_calc, text = "3", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("3"))
-button_3.grid(row=3, column=2)
-button_sum  = Button(frame_calc, text = "+", width = 9, height = 6, font=(None,15), command=lambda:operation("+"))
-button_sum.grid(row=3, column=3)
+button_4 = Button(frame_calc, text = "4", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("4"))
+button_4.grid(row=3, column=0)
+button_5 = Button(frame_calc, text = "5", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("5"))
+button_5.grid(row=3, column=1)
+button_6  = Button(frame_calc, text = "6", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("6"))
+button_6.grid(row=3, column=2)
+button_mult = Button(frame_calc, text = "x", width = 9, height = 6, font=(None,15), command=lambda:operation("x"))
+button_mult.grid(row=3, column=3)
 
 # ------------ row 4 ------------------------------------
 
+button_1  = Button(frame_calc, text = "1", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("1"))
+button_1.grid(row=4, column=0)
+button_2  = Button(frame_calc, text = "2", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("2"))
+button_2.grid(row=4, column=1)
+button_3  = Button(frame_calc, text = "3", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("3"))
+button_3.grid(row=4, column=2)
+button_sum  = Button(frame_calc, text = "+", width = 9, height = 6, font=(None,15), command=lambda:operation("+"))
+button_sum.grid(row=4, column=3)
+
+# ------------ row 5 ------------------------------------
+
 button_dot  = Button(frame_calc, text = ".", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("."))
-button_dot.grid(row=4, column=0)
+button_dot.grid(row=5, column=0)
 button_0  = Button(frame_calc, text = "0", width = 9, height = 6, font=(None,15), command=lambda:key_pressed("0"))
-button_0.grid(row=4, column=1)
+button_0.grid(row=5, column=1)
 button_eq  = Button(frame_calc, text = "=", width = 9, height = 6, font=(None,15), command=lambda:operation("="))
-button_eq.grid(row=4, column=2)
+button_eq.grid(row=5, column=2)
 button_minu  = Button(frame_calc, text = "-", width = 9, height = 6, font=(None,15), command=lambda:operation("-"))
-button_minu.grid(row=4, column=3)
+button_minu.grid(row=5, column=3)
 
 
 root.mainloop()
